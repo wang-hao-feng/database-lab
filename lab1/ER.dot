@@ -1,0 +1,13 @@
+digraph ER
+{
+    p -> r -> q;
+    p [shape = none, margin = 0, label = <
+    <TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0" CELLPADDING="4" WIDTH="100px">
+        <TR>
+            <TD WIDTH="100">实体名</TD>
+        </TR>
+        <TR>
+            <TD WIDTH="100"></TD>
+        </TR>
+    </TABLE>>];
+}
