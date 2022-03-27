@@ -12,7 +12,7 @@ digraph pattern
     /*连线*/
     //住宿
     bed -> room[tailport=e, headport=w, dir=back];
-    room -> student[tailport=e, headport=w, dir=forward];
+    room -> student[headport=w, dir=forward];
 
     //借用
     seminar_room -> borrow[tailport=s, headport=n];
@@ -23,7 +23,7 @@ digraph pattern
     join ->club[tailport=s, headport=n];
 
     //属于
-    student -> belongs_to[tailport=e, headport=w, dir=back];
+    student -> belongs_to[headport=w, dir=back];
     belongs_to -> department[tailport=e, headport=w];
 
     //选修
@@ -31,7 +31,7 @@ digraph pattern
     takes -> course[tailport=e, headport=nw];
 
     //指导
-    club -> mentor[headport=w];
+    club -> mentor[headport=w, dir=back];
     mentor -> teacher[tailport=e, headport=w];
 
     //任课
@@ -39,14 +39,14 @@ digraph pattern
     teaches -> teacher[tailport=s, headport=e];
 
     //位于
-    course -> locates[tailport=e, headport=w, dir=back];
+    course -> locates[headport=w, dir=back];
     locates -> classroom[tailport=e, headport=w];
 
     //开设
     department -> offer[tailport=e, headport=w];
-    offer -> course[tailport=e, headport=w, dir=forward];
+    offer -> course[dir=forward];
 
-    //教师属于
+    //任职
     department -> teacher_belongs_to[tailport=s, headport=n];
     teacher_belongs_to -> teacher[tailport=s, headport=n, dir=forward];
 
@@ -54,19 +54,19 @@ digraph pattern
     course[shape = none, margin = 0, label = <
     <table border="0" cellborder="1" cellspacing="0" cellpadding="4" width="100px">
         <tr><td width="100" bgcolor="lightgrey">课程</td></tr>
-        <tr><td width="100"><u>课程号</u><br/>课程名<br/>上课时间</td></tr>
+        <tr><td width="100"><u>课程号</u><br/>课程名</td></tr>
     </table>>];
 
     student[shape = none, margin = 0, label = <
     <table border="0" cellborder="1" cellspacing="0" cellpadding="4" width="100px">
         <tr><td width="100" bgcolor="lightgrey">学生</td></tr>
-        <tr><td width="100"><u>学号</u><br/>姓名<br/>年龄<br/>性别<br/>入学年份<br/>学历</td></tr>
+        <tr><td width="100"><u>学号</u><br/>姓名<br/>年龄<br/>性别<br/>年级</td></tr>
     </table>>];
 
     teacher[shape = none, margin = 0, label = <
     <table border="0" cellborder="1" cellspacing="0" cellpadding="4" width="100px">
         <tr><td width="100" bgcolor="lightgrey">教师</td></tr>
-        <tr><td width="100"><u>学工号</u><br/>姓名<br/>工资</td></tr>
+        <tr><td width="100"><u>工号</u><br/>姓名<br/>工资</td></tr>
     </table>>];
 
     department[shape = none, margin = 0, label = <
@@ -78,13 +78,13 @@ digraph pattern
     classroom[shape = none, margin = 0, label = <
     <table border="0" cellborder="1" cellspacing="0" cellpadding="4" width="100px">
         <tr><td width="100" bgcolor="lightgrey">教室</td></tr>
-        <tr><td width="100"><u>房间号</u></td></tr>
+        <tr><td width="100"><u>楼号<br/>房间号</u><br/>容量</td></tr>
     </table>>];
 
     seminar_room[shape = none, margin = 0, label = <
     <table border="0" cellborder="1" cellspacing="0" cellpadding="4" width="100px">
         <tr><td width="100" bgcolor="lightgrey">研讨室</td></tr>
-        <tr><td width="100"><u>房间号</u></td></tr>
+        <tr><td width="100"><u>楼号<br/>房间号</u></td></tr>
     </table>>];
 
     club[shape = none, margin = 0, label = <
@@ -95,8 +95,8 @@ digraph pattern
 
     bed[shape = none, margin = 0, label = <
     <table border="0" cellborder="1" cellspacing="0" cellpadding="4" width="100px">
-        <tr><td width="100" bgcolor="lightgrey">床位</td></tr>
-        <tr><td width="100"><u>床号</u></td></tr>
+        <tr><td width="100" bgcolor="lightgrey">宿舍</td></tr>
+        <tr><td width="100"><u>楼号<br/>床号</u></td></tr>
     </table>>];
 
     /*关系*/
@@ -118,7 +118,7 @@ digraph pattern
 
     mentor[shape = diamond, label="指导"];
 
-    teacher_belongs_to[shape = diamond, label="属于"];
+    teacher_belongs_to[shape = diamond, label="任职"];
 
     /*描述性属性*/
     grade[shape = box, label="成绩"];
