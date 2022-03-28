@@ -254,11 +254,11 @@ class MainUI(QMainWindow, Ui_MainWindow):
 
     def __QueryNested(self):
         in_school_query = 'SELECT {0} FROM {1}'.format('学号',
-                                                        '学生 NATURAL JOIN 住宿')
+                                                        '住宿学生信息')
         query = 'SELECT {0} FROM {1} WHERE {2}'.format('学号, 姓名, 性别, 年级',
                                                         '学生',
                                                         '学号 NOT IN ({0})'.format(in_school_query))
-        result = self.sql_socket.Query(query)
+        result = self.__sql_socket.Query(query)
         self.__ShowQueryResult(False, result)
 
     def __QueryGroup(self):
