@@ -73,6 +73,12 @@
          <height>28</height>
         </rect>
        </property>
+       <property name="toolTip">
+        <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;删除时仅课程号有效&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+       </property>
+       <property name="whatsThis">
+        <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;br/&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+       </property>
        <property name="text">
         <string>删除</string>
        </property>
@@ -212,6 +218,9 @@
          <width>93</width>
          <height>28</height>
         </rect>
+       </property>
+       <property name="toolTip">
+        <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;删除时仅学号有效&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
        </property>
        <property name="text">
         <string>删除</string>
@@ -403,6 +412,9 @@
          <width>93</width>
          <height>28</height>
         </rect>
+       </property>
+       <property name="toolTip">
+        <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;删除时仅学号和课程号有效&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
        </property>
        <property name="text">
         <string>删除</string>
@@ -879,7 +891,40 @@
     </widget>
    </widget>
   </widget>
-  <widget class="QStatusBar" name="statusbar"/>
+  <widget class="QMenuBar" name="menuBar">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>1122</width>
+     <height>26</height>
+    </rect>
+   </property>
+   <widget class="QMenu" name="menu">
+    <property name="title">
+     <string>事务管理</string>
+    </property>
+    <addaction name="commit"/>
+    <addaction name="rollback"/>
+   </widget>
+   <addaction name="menu"/>
+  </widget>
+  <action name="commit">
+   <property name="text">
+    <string>提交</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+S</string>
+   </property>
+  </action>
+  <action name="rollback">
+   <property name="text">
+    <string>回滚</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+Z</string>
+   </property>
+  </action>
  </widget>
  <resources/>
  <connections/>

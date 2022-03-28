@@ -55,7 +55,7 @@ CREATE Table IF NOT EXISTS 研讨室
 CREATE Table IF NOT EXISTS 社团
 (
     社团代码 VARCHAR(20) NOT NULL,
-    社团名称 VARCHAR(30),
+    社团名 VARCHAR(30),
     PRIMARY KEY(社团代码)
 );
 
@@ -71,7 +71,7 @@ CREATE TABLE IF NOT EXISTS 选修
 (
     学号 VARCHAR(20) NOT NULL,
     课程号 VARCHAR(10) NOT NULL,
-    成绩 INT CHECK(0 <= 成绩 AND 成绩 <= 100),
+    成绩 INT CHECK(0 <= 成绩 AND 成绩 <= 100) DEFAULT NULL,
     PRIMARY KEY(学号, 课程号),
     FOREIGN KEY(学号) REFERENCES 学生(学号),
     FOREIGN KEY(课程号) REFERENCES 课程(课程号)

@@ -24,7 +24,6 @@ class SQLSocket():
     def __SendChange(self, query):
         with self.__sql_socket.cursor() as cursor:
             cursor.execute(query)
-        self.__sql_socket.commit()
 
     def Connect(self):
         error = ERROR.ACCEPT
@@ -66,10 +65,19 @@ class SQLSocket():
                 error = ERROR.DUPLICATE_ENTRY_ERROR
             elif re.search('Incorrect integer value', err_message):
                 error = ERROR.TYPE_ERROR
-            print(err_message)
+            elif re.search('Cannot add or update a child row: a foreign key constraint fails', err_message):
+                error = ERROR.FOREGIN_KEY_NOT_SATISFY_ERROR
+            else:
+                print(err_message)
         finally:
             return error
     
+    def Commit(self):
+        self.__sql_socket.commit()
+    
+    def Rollback(self):
+        self.__sql_socket.rollback()
+
     def Delete(self, query):
         error = ERROR.ACCEPT
 
@@ -79,6 +87,5 @@ class SQLSocket():
             err_message = str(e)
             if re.search('Cannot delete or update a parent row', err_message):
                 error = ERROR.DELETE_OR_UPDATE_PARENT_ROW
-            print(err_message)
         finally:
             return error

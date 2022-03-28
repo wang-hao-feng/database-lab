@@ -1,9 +1,13 @@
 import re
+import os
+import sys
 import ERROR
 from SQLAPI import SQLSocket
 from Ui_Login import Ui_MainWindow
-from PyQt5.QtSql import QSqlDatabase
+from PyQt5.QtGui import QIcon
 from PyQt5.QtWidgets import QMainWindow, QMessageBox
+
+from PyQt5 import QtCore
 
 from MainUI import MainUI
 
@@ -13,9 +17,11 @@ class LoginUI(QMainWindow, Ui_MainWindow):
         self.setupUi(self)
 
         self.socket = SQLSocket()
-        self.db = QSqlDatabase.addDatabase("QMYSQL")
 
         self.login_button.clicked.connect(self.__Login)
+
+        ico_path = os.path.join(os.path.dirname(os.path.realpath(__file__)), './images/avatar_32x32.ico')
+        self.setWindowIcon(QIcon(ico_path))
     
     def __Login(self):
         self.socket.host = self.IP_text.text()
@@ -49,7 +55,7 @@ class LoginUI(QMainWindow, Ui_MainWindow):
             self.__Critial('数据库不存在')
             return
         
-        self.main_ui = MainUI(self.db)
+        self.main_ui = MainUI(self.socket)
         self.main_ui.show()
         self.close()
 

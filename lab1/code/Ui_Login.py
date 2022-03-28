@@ -39,6 +39,7 @@ class Ui_MainWindow(object):
         self.user_text.setObjectName("user_text")
         self.formLayout.setWidget(1, QtWidgets.QFormLayout.FieldRole, self.user_text)
         self.password_text = QtWidgets.QLineEdit(self.formLayoutWidget)
+        self.password_text.setEchoMode(QtWidgets.QLineEdit.Password)
         self.password_text.setObjectName("password_text")
         self.formLayout.setWidget(2, QtWidgets.QFormLayout.FieldRole, self.password_text)
         self.database_text = QtWidgets.QLineEdit(self.formLayoutWidget)
